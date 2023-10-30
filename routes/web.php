@@ -15,3 +15,4 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [QuizzController::class,'index'])->name('home');
+Route::get('/quizz/{quizz?}',[QuizzController::class,'createOrUpdate'])->name('quizz');
