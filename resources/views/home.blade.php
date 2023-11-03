@@ -17,7 +17,7 @@
         <div class="border-4 rounded-md border-black p-6 flex flex-col justify-center items-center gap-3 max-w-2xl">
             <h1 class="text-4xl font-bold text-red-400">{{$quizzes->quizz_name}}</h1>
             <h2 class="self-start text-xl">{{$quizzes->lecturer}}</h2>
-            <img src="{{$quizzes->quizz_thumbnail}}" alt="thumbnail">
+            <img src="{{ str_contains($quizzes->quizz_thumbnail, 'https') ? $quizzes->quizz_thumbnail : '/storage/' . $quizzes->quizz_thumbnail }}" alt="thumbnail">
             <h2 class="self-start">Quizz Description:</h2>
             <p class="text-lg">{{$quizzes->description}}</p>
             <div class="flex justify-between w-full text-xl text-green-400 items-center">
