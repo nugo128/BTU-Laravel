@@ -15,10 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('quizz_name');
             $table->string('lecturer');
+            $table->integer('status');
             $table->integer('max_grade');
-            $table->float('my_reasult');
-            $table->string('quizz_thumbnail');
-            $table->string('description');
+            $table->float('my_reasult')->nullable();
+            $table->string('quizz_thumbnail')->nullable();
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }

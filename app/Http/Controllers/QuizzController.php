@@ -9,7 +9,25 @@ class QuizzController extends Controller
 {
     public function index()
     {
-        $quizz = Quizz::all();
+        $quizz = Quizz::where('status', 1)
+        ->whereNotNull('quizz_thumbnail') 
+        ->orderBy('created_at', 'desc') 
+        ->take(8)
+        ->get();
+
+    $remainingCount = 8 - $quizz->count();
+
+    if ($remainingCount > 0) {
+        $additionalQuizzes = Quizz::where('status', 1)
+            ->whereNotNull('description')
+            ->whereNotIn('id', $quizz->pluck('id')->all()) 
+            ->orderBy('created_at', 'desc') 
+            ->take($remainingCount)
+            ->get();
+
+        $quizz = $quizz->concat($additionalQuizzes);
+    }
+
         return view('home', compact('quizz'));
     }
     public function createOrUpdate($id) 
