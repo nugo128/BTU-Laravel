@@ -30,6 +30,11 @@ class QuizzController extends Controller
 
         return view('home', compact('quizz'));
     }
+    public function adminQuizz()
+    {
+        $quizz = Quizz::with('comments')->get();
+        return view('admin', compact('quizz'));
+    }
     public function createOrUpdate($id) 
     {
         
@@ -64,6 +69,12 @@ class QuizzController extends Controller
         );
         $quizz->save();
         return redirect()->route('home');
+    }
+    public function destroy($id)
+    {
+        $quizz = Quizz::find($id);
+        $quizz->delete();
+        return redirect('/admin');
     }
         
 }

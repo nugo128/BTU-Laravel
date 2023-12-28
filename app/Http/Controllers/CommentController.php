@@ -17,4 +17,10 @@ class CommentController extends Controller
 
         return response()->json(['message' => 'Comment added successfully', 'comment' => $comment]);
     }
+    public function destroy($id)
+    {
+        $comment = Comment::find($id);
+        $comment->delete();
+        return redirect('/admin');
+    }
 }
