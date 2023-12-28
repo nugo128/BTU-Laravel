@@ -16,5 +16,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [QuizzController::class,'index'])->name('home');
 Route::get('/quizz/{quizz?}',[QuizzController::class,'createOrUpdate'])->name('quizz');
-Route::post('/quizz/createOrUpdate', [QuizzController::class, 'store'])->name('quizz.store')->middleware('super');
+Route::post('/quizz/createOrUpdate', [QuizzController::class, 'store'])->name('quizz.store');
 Route::view('/error', 'error');
