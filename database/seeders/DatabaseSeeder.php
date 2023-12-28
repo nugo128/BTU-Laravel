@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Comment;
 use App\Models\Quizz;
 use Illuminate\Database\Seeder;
 
@@ -53,6 +54,14 @@ class DatabaseSeeder extends Seeder
                 'quizz_thumbnail' => $i % 2 !== 0 && $i > 9 ? fake()->imageUrl() : null,
                 'description' => $i % 2 == 0 ? 'This quiz has a description.' : null,
             ]);
+        }        
+        for ($i = 0; $i <= 30; $i++) {
+            Comment::create([
+                'comment_author' => fake()->name(),
+                'comment'=> fake()->text(),
+                'quizz_id'=> fake()->numberBetween(1,16)    
+            ]);
         }
+        
     }
 }

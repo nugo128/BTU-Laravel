@@ -14,7 +14,7 @@
     <body class="antialiased">
         <div class="bg-gray-600 flex flex-col gap-10 px-20 py-10 text-white items-center">
         @foreach ($quizz as $quizzes)
-        <div class="border-4 rounded-md border-black p-6 flex flex-col justify-center items-center gap-3 max-w-2xl">
+        <a  href="/viewQuizz/{{$quizzes->id}}" class="border-4 rounded-md border-black p-6 flex flex-col justify-center items-center gap-3 max-w-2xl">
             <h1 class="text-4xl font-bold text-red-400">{{$quizzes->quizz_name}}</h1>
             <h2 class="text-green-600  text-2xl font-bold">{{$quizzes->status ? "active" : "inactive"}}</h2>
             <h2 class="self-start text-xl">{{$quizzes->lecturer}}</h2>
@@ -27,7 +27,7 @@
             </div>
         
 
-        </div>          
+        </a>          
         @endforeach
         </div>
         

@@ -43,6 +43,13 @@ class QuizzController extends Controller
         }
 
     }
+    public function viewQuizz($id)
+    {
+        $quizz = Quizz::with('comments')->findOrFail($id);
+        return view('quizz-page', compact('quizz'));
+    }
+
+
     public function store(Request $request){
         $quizz = Quizz::updateOrCreate(
             ['id' => $request->id],
