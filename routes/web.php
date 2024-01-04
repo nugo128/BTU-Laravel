@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\QuizzController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,5 +17,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [QuizzController::class,'index'])->name('home');
 Route::get('/quizz/{quizz?}',[QuizzController::class,'createOrUpdate'])->name('quizz');
-Route::post('/quizz/createOrUpdate', [QuizzController::class, 'store'])->name('quizz.store')->middleware('super');
+Route::get('/viewQuizz/{quizz?}',[QuizzController::class,'viewQuizz'])->name('view');
+Route::post('/comments/add', [CommentController::class,'addComment'])->name('comments.add');
+Route::post('/quizz/createOrUpdate', [QuizzController::class, 'store'])->name('quizz.store');
+Route::get('/admin', [QuizzController::class, 'adminQuizz']);
+Route::get('/admin/comment/{id?}', [CommentController::class,'destroy']);
+Route::get('/admin/quizz/{id?}', [QuizzController::class,'destroy']);
 Route::view('/error', 'error');

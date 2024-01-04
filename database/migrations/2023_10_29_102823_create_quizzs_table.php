@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('quizz_name');
             $table->string('lecturer');
-            $table->integer('status');
+            $table->integer('status')->default(1);
             $table->integer('max_grade');
             $table->float('my_reasult')->nullable();
             $table->string('quizz_thumbnail')->nullable();
