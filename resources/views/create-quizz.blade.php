@@ -39,14 +39,7 @@
                     <label for="quizz_thumbnail" class="block">quizz thumbnail</label>
                     <input type="file" name="quizz_thumbnail" id="quizz_thumbnail" class="w-full border border-gray-400 px-4 py-2 rounded-md focus:outline-none focus:border-blue-500">
                 </div>
-                <div class="flex flex-col">
-                    <label for="my_reasult">My reasult</label>
-                    <input class="border-2 border-black rounded-lg" type="number" name="my_reasult" id="my_reasult" max="8" min="0">
-                </div>
-                <div class="flex flex-col">
-                    <label for="max_grade">Max grade</label>
-                    <input class="border-2 border-black rounded-lg" type="number" name="max_grade" id="max_grade" max="10" min="8" >
-                </div>
+                
                 <button type="submit" class="w-full bg-blue-500 text-white px-4 py-2 mt-4 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Submit</button>
             </form>
     </div>

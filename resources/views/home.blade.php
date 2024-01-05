@@ -21,10 +21,6 @@
             <img src="{{ str_contains($quizzes->quizz_thumbnail, 'https') ? $quizzes->quizz_thumbnail : '/storage/' . $quizzes->quizz_thumbnail }}" alt="thumbnail">
             <h2 class="self-start">Quizz Description:</h2>
             <p class="text-lg">{{$quizzes->description}}</p>
-            <div class="flex justify-between w-full text-xl text-green-400 items-center">
-                <p>my reasult: <span class="text-green-600  text-2xl font-bold">{{$quizzes->my_reasult}}</span></p> 
-                <p>max-grade: <span class="text-green-600  text-2xl font-bold">{{$quizzes->max_grade}}</span></p>
-            </div>
         
 
         </a>          
