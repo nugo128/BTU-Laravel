@@ -23,4 +23,5 @@ Route::post('/quizz/createOrUpdate', [QuizzController::class, 'store'])->name('q
 Route::get('/admin', [QuizzController::class, 'adminQuizz']);
 Route::get('/admin/comment/{id?}', [CommentController::class,'destroy']);
 Route::get('/admin/quizz/{id?}', [QuizzController::class,'destroy']);
+Route::post('/quizzes/verify-answer/{question}', [QuizzController::class,'verifyAnswer'])->name('quizz.verify');
 Route::view('/error', 'error');

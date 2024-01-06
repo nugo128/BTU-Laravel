@@ -18,4 +18,8 @@ public function author()
 {
     return $this->belongsTo(User::class, 'user_id');
 }
+public function questions()
+{
+    return $this->hasMany(Question::class);
+}
 }

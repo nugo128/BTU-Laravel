@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Question;
 use App\Models\Quizz;
 use Illuminate\Http\Request;
 
@@ -35,6 +36,16 @@ class QuizzController extends Controller
         $quizz = Quizz::with('comments')->get();
         return view('admin', compact('quizz'));
     }
+    public function verifyAnswer(Question $question, Request $request)
+{
+    $selectedOptionIndex = $request->input('selectedOptionIndex');
+
+    if ($selectedOptionIndex + 1 == $question->correct_answer) {
+        return response()->json(['message' => true]);
+    } else {
+        return response()->json(['message' => false]);
+    }
+}
     public function createOrUpdate($id) 
     {
         
@@ -50,7 +61,7 @@ class QuizzController extends Controller
     }
     public function viewQuizz($id)
     {
-        $quizz = Quizz::with('comments')->findOrFail($id);
+        $quizz = Quizz::with('comments','questions')->findOrFail($id);
         return view('quizz-page', compact('quizz'));
     }
 

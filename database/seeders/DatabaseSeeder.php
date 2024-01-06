@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\Comment;
+use App\Models\Question;
 use App\Models\Quizz;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -64,6 +65,16 @@ class DatabaseSeeder extends Seeder
                 'comment_author' => fake()->name(),
                 'comment'=> fake()->text(),
                 'quizz_id'=> fake()->numberBetween(1,16)    
+            ]);
+        }        
+        for ($i = 0; $i <= 100; $i++) {
+            Question::create([
+                'question' => fake()->sentence(),
+                'thumbnail'=> fake()->imageUrl(),
+                'quizz_id'=> fake()->numberBetween(1,16),
+                'answer_options'  => json_encode([fake()->word(),fake()->word(),fake()->word(),fake()->word()]),
+                'correct_answer'=> fake()->numberBetween(1,4),
+                'position'=> $i,
             ]);
         }
         
