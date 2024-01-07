@@ -10,30 +10,15 @@ class QuizzController extends Controller
 {
     public function index()
     {
-        $quizz = Quizz::where('status', 1)
-        ->whereNotNull('quizz_thumbnail') 
+        $quizz = Quizz::with('questions')->where('status', 1)
         ->orderBy('created_at', 'desc') 
-        ->take(8)
         ->get();
-
-    $remainingCount = 8 - $quizz->count();
-
-    if ($remainingCount > 0) {
-        $additionalQuizzes = Quizz::where('status', 1)
-            ->whereNotNull('description')
-            ->whereNotIn('id', $quizz->pluck('id')->all()) 
-            ->orderBy('created_at', 'desc') 
-            ->take($remainingCount)
-            ->get();
-
-        $quizz = $quizz->concat($additionalQuizzes);
-    }
 
         return view('home', compact('quizz'));
     }
     public function adminQuizz()
     {
-        $quizz = Quizz::with('comments')->get();
+        $quizz = Quizz::with('comments','questions','author')->get();
         return view('admin', compact('quizz'));
     }
     public function verifyAnswer(Question $question, Request $request)
@@ -92,6 +77,14 @@ class QuizzController extends Controller
         
         $quizz->save();
         return redirect()->route('home');
+    }
+    public function publicPost($id)
+    {
+        $quizz = Quizz::find($id);
+        $quizz->status = 1;
+        $quizz->save();
+        return redirect('/admin');
+
     }
     public function destroy($id)
     {

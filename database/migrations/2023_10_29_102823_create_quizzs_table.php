@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->string('quizz_name');
             $table->string('lecturer');
-            $table->integer('status')->default(1);
+            $table->integer('status')->default(0);
             $table->string('quizz_thumbnail')->nullable();
             $table->string('description')->nullable();
             $table->timestamps();

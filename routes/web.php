@@ -36,4 +36,5 @@ Route::middleware(['super'])->group(function () {
     Route::get('/admin', [QuizzController::class, 'adminQuizz']);
     Route::get('/admin/comment/{id?}', [CommentController::class,'destroy']);
     Route::get('/admin/quizz/{id?}', [QuizzController::class,'destroy']);
+    Route::get('/admin/public/{id?}',[QuizzController::class,'publicPost'])->name('quizz.public');
 });

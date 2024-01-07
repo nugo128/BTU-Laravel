@@ -14,9 +14,20 @@
     <body class="antialiased">
         <div class=" flex flex-col gap-10 px-20 py-10 text-black items-center bg-gray-600">
 
-        
+        @foreach ($quizz as $quizzes)
+        @if (!$quizzes->status)
+        <div  class="border-4 rounded-md border-black p-6 flex flex-col justify-center items-center gap-3 max-w-2xl">
+            <h2>{{$quizzes->author->name}} wants to public Quizz: {{$quizzes->quizz_name}}</h2>
+            
+            <a href="/admin/public/{{$quizzes->id}}" class="text-xl bg-green-500 py-1 px-5 rounded-3xl">Public</a>
+            
+            
+        </div>          
+        @endif
+    @endforeach
         
     <form action="{{ route('quizz.store') }}" method="POST" enctype="multipart/form-data">
+        <h2>Add new quizz</h2>
                 @csrf
                 @method('POST') 
                 <input type="hidden" name="id" id="id">

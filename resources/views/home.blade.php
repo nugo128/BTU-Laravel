@@ -26,6 +26,7 @@
         @foreach ($quizz as $quizzes)
         <a  href="/viewQuizz/{{$quizzes->id}}" class="border-4 rounded-md border-black p-6 flex flex-col justify-center items-center gap-3 max-w-2xl">
             <h1 class="text-4xl font-bold text-red-400">{{$quizzes->quizz_name}}</h1>
+            <h2 class="text-2xl">Number of questions: {{count($quizzes->questions)}}</h2>
             <h2 class="text-green-600  text-2xl font-bold">{{$quizzes->status ? "active" : "inactive"}}</h2>
             <h2 class="self-start text-xl">{{$quizzes->lecturer}}</h2>
             <img src="{{ str_contains($quizzes->quizz_thumbnail, 'https') ? $quizzes->quizz_thumbnail : '/storage/' . $quizzes->quizz_thumbnail }}" alt="thumbnail">
