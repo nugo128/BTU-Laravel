@@ -19,7 +19,6 @@
                 <h1>Create new Quizz
             
                 </h1>
-                <input type="hidden" name="id" id="id" value="{{$id}}">
                 <div class="flex flex-col">
                     <label for="quizz_name">quizz name</label>
                     <input class="border-2 border-black rounded-lg" type="text" name="quizz_name" id="quizz_name">

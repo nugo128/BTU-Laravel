@@ -12,6 +12,16 @@
         @vite('resources/css/app.css')    
     </head>
     <body class="antialiased">
+        <div class="bg-gray-600 flex justify-end pr-20 pt-6 gap-4 font-bold text-2xl text-white">
+            @auth
+                <h2 class="mt-3 mr-2">Welcome, {{ucwords(auth()->user()->name)}}</h2>
+                <a href="/logout" class="border-2 border-green-500 rounded-2xl p-2"">Logout</a>
+            @endauth
+            @if (!auth()->user())
+            <a href="/registration" class="border-2 border-green-500 rounded-2xl p-2">register</a>
+            <a href="/login" class="border-2 border-green-500 rounded-2xl p-2">login</a>
+            @endif
+        </div>
         <div class="bg-gray-600 flex flex-col gap-10 px-20 py-10 text-white items-center">
         @foreach ($quizz as $quizzes)
         <a  href="/viewQuizz/{{$quizzes->id}}" class="border-4 rounded-md border-black p-6 flex flex-col justify-center items-center gap-3 max-w-2xl">

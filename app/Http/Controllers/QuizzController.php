@@ -55,7 +55,7 @@ class QuizzController extends Controller
             return view('edit-quizz',compact('quizz', 'id'));
         } else {
             $quizz = new Quizz();
-            return view('create-quizz', compact('id'));
+            return view('create-quizz');
         }
 
     }
@@ -67,17 +67,29 @@ class QuizzController extends Controller
 
 
     public function store(Request $request){
-        $quizz = Quizz::updateOrCreate(
-            ['id' => $request->id],
-            [
-                'quizz_name' => $request['quizz_name'],
-                'lecturer' => $request['lecturer'],
-                'description'=>$request->description,
-                'quizz_thumbnail' => $request->file('quizz_thumbnail')->store('images'),
-                'max_grade' => $request['max_grade'],
-                'my_reasult' => $request['my_reasult'],
-            ]
-        );
+
+        if(is_numeric($request->id)){
+            $quizz = Quizz::updateOrCreate(
+                ['id' => $request->id],
+                [
+                    'quizz_name' => $request['quizz_name'],
+                    'lecturer' => $request['lecturer'],
+                    'description'=>$request->description,
+                    'quizz_thumbnail' => $request->file('quizz_thumbnail')->store('images'),
+                ]
+            );
+        }else{
+            $quizz = Quizz::updateOrCreate(
+                [   
+                    'user_id' => auth()->id(),
+                    'quizz_name' => $request['quizz_name'],
+                    'lecturer' => $request['lecturer'],
+                    'description'=>$request->description,
+                    'quizz_thumbnail' => $request->file('quizz_thumbnail')->store('images'),
+                ]
+            );
+        }
+        
         $quizz->save();
         return redirect()->route('home');
     }

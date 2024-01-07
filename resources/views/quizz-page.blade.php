@@ -46,7 +46,6 @@
 </svg>
 </h2>
 <form id="commentForm" class="flex flex-col gap-4 w-full text-black">
-    <input type="text" name="comment_author" placeholder="Your Name">
     <input type="hidden" name="quizz_id" value="{{$quizz->id}}">
     <textarea name="comment" placeholder="Your Comment"></textarea>
     <button type="submit" class="bg-green-500 w-1/3 self-center py-2 rounded-2xl">Add Comment</button>
