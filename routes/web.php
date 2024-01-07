@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\QuizzController;
 use Illuminate\Support\Facades\Route;
 
@@ -37,4 +38,5 @@ Route::middleware(['super'])->group(function () {
     Route::get('/admin/comment/{id?}', [CommentController::class,'destroy']);
     Route::get('/admin/quizz/{id?}', [QuizzController::class,'destroy']);
     Route::get('/admin/public/{id?}',[QuizzController::class,'publicPost'])->name('quizz.public');
+    Route::post('/question/add', [QuestionController::class, 'store'])->name('question.store');
 });

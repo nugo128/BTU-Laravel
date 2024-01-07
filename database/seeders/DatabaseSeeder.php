@@ -49,7 +49,6 @@ class DatabaseSeeder extends Seeder
                 'quizz_id'=> fake()->numberBetween(1,16),
                 'answer_options'  => json_encode([fake()->word(),fake()->word(),fake()->word(),fake()->word()]),
                 'correct_answer'=> fake()->numberBetween(1,4),
-                'position'=> $i,
             ]);
         }
         

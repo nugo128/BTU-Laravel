@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('thumbnail')->nullable();
             $table->json('answer_options');
             $table->integer('correct_answer');
-            $table->integer('position');
             $table->timestamps();
         });
     }
