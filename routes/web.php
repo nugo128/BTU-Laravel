@@ -32,11 +32,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/quizz/{quizz?}',[QuizzController::class,'createOrUpdate'])->name('quizz');
     Route::post('/quizz/createOrUpdate', [QuizzController::class, 'store'])->name('quizz.store');
     Route::post('/quizzes/verify-answer/{question}', [QuizzController::class,'verifyAnswer'])->name('quizz.verify');
+    Route::get('/admin/quizz/{id?}', [QuizzController::class,'destroy']);
 });
 Route::middleware(['super'])->group(function () {
     Route::get('/admin', [QuizzController::class, 'adminQuizz']);
     Route::get('/admin/comment/{id?}', [CommentController::class,'destroy']);
-    Route::get('/admin/quizz/{id?}', [QuizzController::class,'destroy']);
     Route::get('/admin/public/{id?}',[QuizzController::class,'publicPost'])->name('quizz.public');
     Route::post('/question/add', [QuestionController::class, 'store'])->name('question.store');
 });

@@ -33,10 +33,14 @@ class QuizzController extends Controller
 }
     public function createOrUpdate($id) 
     {
-        
-        $quizCount = Quizz::count();
+
+        $quizCount = Quizz::latest()->first()->id;
         if ($id <= $quizCount) {
             $quizz = Quizz::findOrFail($id);
+            $quizzUser = $quizz->author->id;
+            if(auth()->id() !== $quizzUser){
+                return view('error');
+            }
             return view('edit-quizz',compact('quizz', 'id'));
         } else {
             $quizz = new Quizz();
@@ -90,7 +94,7 @@ class QuizzController extends Controller
     {
         $quizz = Quizz::find($id);
         $quizz->delete();
-        return redirect('/admin');
+        return redirect()->back();
     }
         
 }

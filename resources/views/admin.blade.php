@@ -13,6 +13,7 @@
     </head>
     <body class="antialiased">
         <div class=" flex flex-col gap-10 px-20 py-10 text-black items-center bg-gray-600">
+        <a href="/" class="border-2 border-green-500 rounded-2xl p-2 self-start text-white">HomePage</a>
 
         @foreach ($quizz as $quizzes)
         @if (!$quizzes->status)
