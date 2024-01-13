@@ -64,9 +64,13 @@ class QuizzController extends Controller
                     'quizz_name' => $request['quizz_name'],
                     'lecturer' => $request['lecturer'],
                     'description'=>$request->description,
-                    'quizz_thumbnail' => $request->file('quizz_thumbnail')->store('images'),
                 ]
             );
+            if ($request->hasFile('quizz_thumbnail')) {
+                $thumbnail = $request->file('quizz_thumbnail');
+                $thumbnailPath = $thumbnail->store('images');
+                $quizz->thumbnail = $thumbnailPath;
+            }
         }else{
             $quizz = Quizz::updateOrCreate(
                 [   

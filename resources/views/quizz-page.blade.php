@@ -15,6 +15,7 @@
     </head>
     <body class="antialiased">
         <div class="bg-gray-600 flex flex-col gap-10 px-20 py-10 text-white items-center">
+        <a href="/" class="border-2 border-green-500 rounded-2xl p-2 self-start text-white">HomePage</a>
         <div id="main" class="border-4 rounded-md border-black p-6 flex flex-col justify-center items-center gap-3 max-w-2xl">
             <h1 class="text-4xl font-bold text-red-400">{{$quizz->quizz_name}}</h1>
             <h2 class="text-green-600  text-2xl font-bold">{{$quizz->status ? "active" : "inactive"}}</h2>

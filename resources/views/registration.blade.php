@@ -13,7 +13,7 @@
     </head>
     <body class="antialiased bg-gray-600">
     <div class="bg-gray-600 flex justify-end pr-20 pt-6 gap-4 font-bold text-2xl text-white">
-            <a href="/home" class="border-2 border-green-500 rounded-2xl p-2">home</a>
+            <a href="/" class="border-2 border-green-500 rounded-2xl p-2">home</a>
             <a href="/login" class="border-2 border-green-500 rounded-2xl p-2">login</a>
         </div>
     <div class=" h-full flex flex-col gap-10 px-20 py-10 text-black items-center ">

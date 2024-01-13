@@ -14,41 +14,45 @@
     <body class="antialiased">
         <div class=" flex flex-col gap-10 px-20 py-10 text-black items-center bg-gray-600">
         <a href="/" class="border-2 border-green-500 rounded-2xl p-2 self-start text-white">HomePage</a>
+        <h2 class="text-white text-4xl font-bold">ADMIN PANNEL</h2>
+        <h3 class="text-white text-2xl mt-10 font-bold">Some users are waiting for you to public quizz.</h3>
+        <div class="grid w-screen grid-cols-3 gap-2 px-10">
 
-        @foreach ($quizz as $quizzes)
-        @if (!$quizzes->status)
-        <div  class="border-4 rounded-md border-black p-6 flex flex-col justify-center items-center gap-3 max-w-2xl">
-            <h2>{{$quizzes->author->name}} wants to public Quizz: {{$quizzes->quizz_name}}</h2>
-            
-            <a href="/admin/public/{{$quizzes->id}}" class="text-xl bg-green-500 py-1 px-5 rounded-3xl">Public</a>
-            
-            
-        </div>          
-        @endif
-    @endforeach
+            @foreach ($quizz as $quizzes)
+            @if (!$quizzes->status)
+            <div  class="border-4 rounded-md border-black p-4 flex flex-col justify-center items-center gap-3 max-w-2xl">
+                <h2>{{$quizzes->author->name}} wants to public Quizz: {{$quizzes->quizz_name}}</h2>
+                
+                <a href="/admin/public/{{$quizzes->id}}" class="text-xl bg-green-500 py-1 px-5 rounded-3xl">Public</a>
+                
+                
+            </div>          
+            @endif
+            @endforeach
+        </div>
         
     <form action="{{ route('quizz.store') }}" method="POST" enctype="multipart/form-data">
-        <h2>Add new quizz</h2>
+        <h2 class="text-white text-2xl text-center">Add new quizz</h2>
                 @csrf
                 @method('POST') 
                 <input type="hidden" name="id" id="id">
                 <div class="flex flex-col">
-                    <label for="quizz_name">quizz name</label>
+                    <label for="quizz_name" class="text-white">quizz name</label>
                     <input class="border-2 border-black rounded-lg" type="text" name="quizz_name" id="quizz_name">
                 </div>
                 <div class="flex flex-col">
-                    <label for="lecturer">lecturer</label>
+                    <label for="lecturer" class="text-white">lecturer</label>
                     <input class="border-2 border-black rounded-lg" type="text" name="lecturer" id="lecturer">
                 </div>
                 <div class="flex flex-col">
-                    <label for="description">description</label>
+                    <label for="description" class="text-white">description</label>
                     
                     <textarea class="border-2 border-black rounded-lg" name="description" id="description" cols="20" rows="8"></textarea>
                     
                 </div>
                 
                 <div class="flex flex-col">
-                    <label for="quizz_thumbnail" class="block">quizz thumbnail</label>
+                    <label for="quizz_thumbnail" class="block text-white">quizz thumbnail</label>
                     <input type="file" name="quizz_thumbnail" id="quizz_thumbnail" class="w-full border border-gray-400 px-4 py-2 rounded-md focus:outline-none focus:border-blue-500">
                 </div>
                 <button type="submit" class="w-full bg-blue-500 text-white px-4 py-2 mt-4 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Submit</button>

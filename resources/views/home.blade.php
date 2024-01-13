@@ -18,6 +18,7 @@
                 @if (auth()->id() === 1)
                     <a href="/admin" class="border-2 border-green-500 rounded-2xl p-2">Admin Pannel</a>
                 @endif
+                <a href="/quizz/createOrUpdate" class="border-2 border-green-500 rounded-2xl p-2"">Create quizz</a>
                 <a href="/logout" class="border-2 border-green-500 rounded-2xl p-2"">Logout</a>
             @endauth
             @if (!auth()->user())
