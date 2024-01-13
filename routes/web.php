@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\QuizzController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,11 +18,25 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [QuizzController::class,'index'])->name('home');
-Route::get('/quizz/{quizz?}',[QuizzController::class,'createOrUpdate'])->name('quizz');
-Route::get('/viewQuizz/{quizz?}',[QuizzController::class,'viewQuizz'])->name('view');
-Route::post('/comments/add', [CommentController::class,'addComment'])->name('comments.add');
-Route::post('/quizz/createOrUpdate', [QuizzController::class, 'store'])->name('quizz.store');
-Route::get('/admin', [QuizzController::class, 'adminQuizz']);
-Route::get('/admin/comment/{id?}', [CommentController::class,'destroy']);
-Route::get('/admin/quizz/{id?}', [QuizzController::class,'destroy']);
+
 Route::view('/error', 'error');
+Route::view('/registration', 'registration');
+Route::view('/login', 'login');
+Route::post('/register', [AuthController::class, 'store'])->name('register');
+Route::post('/login', [AuthController::class, 'login'])->name('login');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/logout',[AuthController::class,'logout'])->name('logout');
+    Route::get('/viewQuizz/{quizz?}',[QuizzController::class,'viewQuizz'])->name('view');
+    Route::post('/comments/add', [CommentController::class,'addComment'])->name('comments.add');
+    Route::get('/quizz/{quizz?}',[QuizzController::class,'createOrUpdate'])->name('quizz');
+    Route::post('/quizz/createOrUpdate', [QuizzController::class, 'store'])->name('quizz.store');
+    Route::post('/quizzes/verify-answer/{question}', [QuizzController::class,'verifyAnswer'])->name('quizz.verify');
+    Route::get('/admin/quizz/{id?}', [QuizzController::class,'destroy']);
+});
+Route::middleware(['super'])->group(function () {
+    Route::get('/admin', [QuizzController::class, 'adminQuizz']);
+    Route::get('/admin/comment/{id?}', [CommentController::class,'destroy']);
+    Route::get('/admin/public/{id?}',[QuizzController::class,'publicPost'])->name('quizz.public');
+    Route::post('/question/add', [QuestionController::class, 'store'])->name('question.store');
+});

@@ -13,11 +13,10 @@ return new class extends Migration
     {
         Schema::create('quizzs', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->string('quizz_name');
             $table->string('lecturer');
-            $table->integer('status')->default(1);
-            $table->integer('max_grade');
-            $table->float('my_reasult')->nullable();
+            $table->integer('status')->default(0);
             $table->string('quizz_thumbnail')->nullable();
             $table->string('description')->nullable();
             $table->timestamps();

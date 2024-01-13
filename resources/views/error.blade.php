@@ -14,7 +14,7 @@
     </head>
     <body class="antialiased">
     <div class="h-screen flex items-center justify-center bg-black">
-    <h2 class="text-4xl text-white">OOPS, There is an error!</h2>
+    <h2 class="text-4xl text-white">OOPS, You do not have permission!</h2>
 </div>
     </body>
 </html>

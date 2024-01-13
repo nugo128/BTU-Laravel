@@ -14,4 +14,12 @@ class Quizz extends Model
 {
     return $this->hasMany(Comment::class);
 }
+public function author()
+{
+    return $this->belongsTo(User::class, 'user_id');
+}
+public function questions()
+{
+    return $this->hasMany(Question::class);
+}
 }

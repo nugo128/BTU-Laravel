@@ -10,7 +10,7 @@ class CommentController extends Controller
     public function addComment(Request $request)
     {
         $comment = Comment::create([
-            'comment_author' => $request->comment_author,
+            'comment_author' => auth()->user()->name,
             'quizz_id'=>$request->quizz_id,
             'comment' => $request->comment,
         ]);

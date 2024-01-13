@@ -16,7 +16,7 @@ class SuperMiddleware
     public function handle(Request $request, Closure $next): Response
     {
 
-        if ($request->input('name') !== 'my-super-middleware') {
+        if (auth()->id() !== 1) {
             return redirect('/error');
         }
         

@@ -12,38 +12,32 @@
         @vite('resources/css/app.css')    
     </head>
     <body class="antialiased">
-    <div class=" h-full flex flex-col gap-10 px-20 py-10 text-black items-center ">
+    <div class=" h-screen flex flex-col gap-10 px-20 py-10 text-black items-center bg-gray-500">
+    <a href="/" class="border-2 border-green-500 rounded-2xl p-2 self-start text-white">HomePage</a>
     <form action="{{ route('quizz.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('POST') 
                 <input type="hidden" name="id" id="id" value="{{$id}}">
+                <h2 class="text-white text-3xl text-center">EDIT QUIZZ</h2>
                 <div class="flex flex-col">
-                    <label for="quizz_name">quizz name</label>
+                    <label for="quizz_name" class="text-white">quizz name</label>
                     <input class="border-2 border-black rounded-lg" type="text" name="quizz_name" id="quizz_name" value="{{$quizz->quizz_name}}">
                 </div>
                 <div class="flex flex-col">
-                    <label for="lecturer">lecturer</label>
+                    <label for="lecturer" class="text-white">lecturer</label>
                     <input class="border-2 border-black rounded-lg" type="text" name="lecturer" id="lecturer" value="{{ $quizz->lecturer }}   ">
                 </div>
                 <div class="flex flex-col">
-                    <label for="description">description</label>
+                    <label for="description" class="text-white">description</label>
                     
                     <textarea class="border-2 border-black rounded-lg" name="description" id="description" cols="20" rows="8">{{ $quizz->description }}</textarea>
                     
                 </div>
                 
                 <div class="flex flex-col">
-                    <label for="quizz_thumbnail" class="block">quizz thumbnail</label>
+                    <label for="quizz_thumbnail" class="block text-white">quizz thumbnail</label>
                     <input type="file" name="quizz_thumbnail" id="quizz_thumbnail" class="w-full border border-gray-400 px-4 py-2 rounded-md focus:outline-none focus:border-blue-500">
-                    <img src="{{$quizz->quizz_thumbnail}}" alt="" class="w-40 h-40">
-                </div>
-                <div class="flex flex-col">
-                    <label for="my_reasult">My reasult</label>
-                    <input class="border-2 border-black rounded-lg" type="number" name="my_reasult" id="my_reasult" value="{{ $quizz->my_reasult }}">
-                </div>
-                <div class="flex flex-col">
-                    <label for="max_grade">Max grade</label>
-                    <input class="border-2 border-black rounded-lg" type="number" name="max_grade" id="max_grade"   value="{{ $quizz->max_grade }}">
+                    <img src="{{ str_contains($quizz->quizz_thumbnail, 'https') ? $quizz->quizz_thumbnail : '/storage/' . $quizz->quizz_thumbnail }}" alt="" class="w-40 h-40">
                 </div>
                 <button type="submit" class="w-full bg-blue-500 text-white px-4 py-2 mt-4 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Submit</button>
             </form>
